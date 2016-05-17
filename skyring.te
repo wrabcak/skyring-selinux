@@ -70,6 +70,7 @@ optional_policy(`
     salt_read_cache(skyring_t)
     salt_stream_connect(skyring_t)
     salt_read_data(skyring_t)
+    skyring_stream_connect_salt(skyring_t)
 ')
 
 optional_policy(`

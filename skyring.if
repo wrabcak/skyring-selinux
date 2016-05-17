@@ -201,6 +201,24 @@ interface(`skyring_stream_connect',`
 
 ########################################
 ## <summary>
+##      Connect to skyring over an unix
+##      stream socket.
+## </summary>
+## <param name="domain">
+##      <summary>
+##      Domain allowed access.
+##      </summary>
+## </param>
+#
+interface(`skyring_stream_connect_salt',`
+        gen_require(`
+		type salt_t;
+        ')
+	skyring_stream_connect(salt_t)
+')
+
+########################################
+## <summary>
 ##	All of the rules required to administrate
 ##	an skyring environment
 ## </summary>
