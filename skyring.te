@@ -21,6 +21,9 @@ files_pid_file(skyring_var_run_t)
 type skyring_unit_file_t;
 systemd_unit_file(skyring_unit_file_t)
 
+type skyring_custom_port_t;
+corenet_port(skyring_custom_port_t)
+
 ########################################
 #
 # skyring local policy
@@ -49,17 +52,28 @@ files_pid_filetrans(skyring_t, skyring_var_run_t, sock_file)
 kernel_read_system_state(skyring_t)
 kernel_read_unix_sysctls(skyring_t)
 kernel_read_net_sysctls(skyring_t)
+kernel_read_software_raid_state(skyring_t)
 
 auth_read_passwd(skyring_t)
 
 corecmd_exec_shell(skyring_t)
+corecmd_exec_bin(skyring_t)
 
 corenet_tcp_bind_generic_node(skyring_t)
 corenet_tcp_bind_http_cache_port(skyring_t)
 corenet_tcp_bind_transproxy_port(skyring_t)
 corenet_tcp_connect_mongod_port(skyring_t)
+corenet_tcp_connect_amanda_port(skyring_t)
+corenet_tcp_connect_lmtp_port(skyring_t)
+corenet_tcp_connect_pki_kra_port(skyring_t)
+corenet_tcp_connect_salt_port(skyring_t)
+corenet_tcp_connect_ssh_port(skyring_t)
+corenet_tcp_connect_skyring_custom_port(skyring_t)
+corenet_tcp_connect_xen_port(skyring_t)
 
 dev_read_sysfs(skyring_t)
+
+init_read_state(skyring_t)
 
 libs_exec_ldconfig(skyring_t)
 
@@ -67,7 +81,16 @@ sysnet_dns_name_resolve(skyring_t)
 sysnet_exec_ifconfig(skyring_t)
 
 optional_policy(`
-    salt_read_cache(skyring_t)
+	dmesg_exec(skyring_t)
+')
+
+optional_policy(`
+	dmidecode_exec(skyring_t)
+')
+
+optional_policy(`
+    salt_manage_cache_files(skyring_t)
+    salt_manage_cache_dirs(skyring_t)
     salt_stream_connect(skyring_t)
     salt_read_data(skyring_t)
     skyring_stream_connect_salt(skyring_t)
@@ -79,4 +102,9 @@ optional_policy(`
 
 optional_policy(`
     systemd_hostnamed_read_config(skyring_t)
+    systemd_exec_systemctl(skyring_t)
+')
+
+optional_policy(`
+	dbus_system_bus_client(skyring_t)
 ')
