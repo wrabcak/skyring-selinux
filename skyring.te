@@ -73,6 +73,7 @@ corenet_tcp_connect_mongod_port(skyring_t)
 corenet_tcp_connect_amanda_port(skyring_t)
 corenet_tcp_connect_lmtp_port(skyring_t)
 corenet_tcp_connect_pki_kra_port(skyring_t)
+corenet_tcp_bind_pki_kra_port(skyring_t)
 corenet_tcp_connect_salt_port(skyring_t)
 corenet_tcp_connect_ssh_port(skyring_t)
 corenet_tcp_connect_xen_port(skyring_t)
@@ -126,4 +127,9 @@ optional_policy(`
 optional_policy(`
 	skyring_stub_carbon()
 	skyring_manage_conf(carbon_t)
+')
+
+optional_policy(`
+	skyring_stub_httpd()
+	skyring_read_conf(httpd_t)
 ')

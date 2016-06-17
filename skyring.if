@@ -337,3 +337,19 @@ interface(`skyring_stub_carbon',`
 		type carbon_t;
 	')
 ')
+
+########################################
+## <summary>
+##	carbon stub interface.  No access allowed.
+## </summary>
+## <param name="domain" unused="true">
+##	<summary>
+##	Domain allowed access
+##	</summary>
+## </param>
+#
+interface(`skyring_stub_httpd',`
+	gen_require(`
+		type httpd_t;
+	')
+')
