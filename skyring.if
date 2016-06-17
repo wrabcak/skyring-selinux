@@ -321,3 +321,19 @@ interface(`skyring_manage_conf',`
 	manage_dirs_pattern($1, skyring_conf_t, skyring_conf_t)
 	manage_files_pattern($1, skyring_conf_t, skyring_conf_t)
 ')
+
+########################################
+## <summary>
+##	carbon stub interface.  No access allowed.
+## </summary>
+## <param name="domain" unused="true">
+##	<summary>
+##	Domain allowed access
+##	</summary>
+## </param>
+#
+interface(`skyring_stub_carbon',`
+	gen_require(`
+		type carbon_t;
+	')
+')
