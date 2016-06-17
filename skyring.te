@@ -31,13 +31,12 @@ corenet_port(skyring_custom_port_t)
 #
 # skyring local policy
 #
-allow skyring_t self:capability net_admin;
+allow skyring_t self:capability { sys_rawio sys_admin net_admin };
 allow skyring_t self:capability2 block_suspend;
 allow skyring_t self:fifo_file rw_fifo_file_perms;
 allow skyring_t self:unix_stream_socket create_stream_socket_perms;
 allow skyring_t self:tcp_socket { accept listen };
 allow skyring_t self:netlink_route_socket nlmsg_write;
-
 
 allow skyring_t skyring_conf_t:dir manage_dir_perms;
 allow skyring_t skyring_conf_t:file manage_file_perms;
@@ -60,6 +59,7 @@ kernel_read_system_state(skyring_t)
 kernel_read_unix_sysctls(skyring_t)
 kernel_read_net_sysctls(skyring_t)
 kernel_read_software_raid_state(skyring_t)
+kernel_read_ring_buffer(skyring_t)
 
 auth_read_passwd(skyring_t)
 
@@ -80,10 +80,14 @@ corenet_tcp_connect_xen_port(skyring_t)
 allow skyring_t skyring_custom_port_t:tcp_socket name_connect;
 
 dev_read_sysfs(skyring_t)
+dev_read_kmsg(skyring_t)
+dev_read_raw_memory(skyring_t)
 
 init_read_state(skyring_t)
 
 libs_exec_ldconfig(skyring_t)
+
+miscfiles_read_hwdata(skyring_t)
 
 sysnet_dns_name_resolve(skyring_t)
 sysnet_exec_ifconfig(skyring_t)
@@ -101,6 +105,7 @@ optional_policy(`
     salt_manage_cache_dirs(skyring_t)
     salt_stream_connect(skyring_t)
     salt_read_data(skyring_t)
+    salt_manage_conf(skyring_t)
     skyring_stream_connect_salt(skyring_t)
     skyring_read_conf_salt(skyring_t)
 ')
