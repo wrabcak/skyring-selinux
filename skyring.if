@@ -387,5 +387,6 @@ interface(`skyring_stub_httpd',`
 interface(`skyring_stub_lvm',`
 	gen_require(`
 		type lvm_t;
+		class dbus send_msg;
 	')
 ')
