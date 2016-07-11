@@ -27,6 +27,8 @@ systemd_unit_file(skyring_unit_file_t)
 type skyring_custom_port_t;
 corenet_port(skyring_custom_port_t)
 
+permissive skyring_t;
+
 ########################################
 #
 # skyring local policy
@@ -137,6 +139,6 @@ optional_policy(`
 ')
 
 optional_policy(`
-	salt_stub_lvm()
+	skyring_stub_lvm()
 	allow skyring_t lvm_t:dbus send_msg;
 ')
