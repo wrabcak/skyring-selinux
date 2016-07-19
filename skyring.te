@@ -63,7 +63,7 @@ kernel_read_net_sysctls(skyring_t)
 kernel_read_software_raid_state(skyring_t)
 kernel_read_ring_buffer(skyring_t)
 
-auth_read_passwd(skyring_t)
+auth_use_nsswitch(skyring_t)
 
 corecmd_exec_shell(skyring_t)
 corecmd_exec_bin(skyring_t)
